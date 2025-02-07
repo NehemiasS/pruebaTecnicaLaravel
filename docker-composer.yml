@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # laravel sail
+  laravel:
+    image: sail-8.2/app
+    build:
+      context: ./back-end/vendor/laravel/sail/runtimes/8.2
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    volumes:
+      - ./back-end:/var/www/html
+    ports:
+      - "8000:80"
+    environment:
+      WWWUSER: "${UID:-1000}"
+      WWWGROUP: "${GID:-1000}"
+    depends_on:
+      - mysql
+    networks:
+      - sail
+
+  # Servicio de MySQL (Sail)
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: registro_alumnos
+      MYSQL_USER: sail
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - sail
+
+  # Servicio de Ionic/Angular
+  ionic:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    container_name: ionic_app
+    volumes:
+      - ./front-end:/app
+    ports:
+      - "8100:8100"
+    networks:
+      - sail
+
+# Red para conectar los servicios
+networks:
+  sail:
+    driver: bridge
