@@ -1,0 +1,53 @@
+<div class="container mt-5">
+    <h2> Alumno</h2>
+    <form (ngSubmit)="crearAlumno()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoAlumno.nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+        <input type="date" class="form-control" id="fecha_nacimiento" [(ngModel)]="nuevoAlumno.fecha_nacimiento" name="fecha_nacimiento" required>
+      </div>
+      <div class="form-group">
+        <label for="nombre_padre">Nombre del Padre</label>
+        <input type="text" class="form-control" id="nombre_padre" [(ngModel)]="nuevoAlumno.nombre_padre" name="nombre_padre" required>
+      </div>
+      <div class="form-group">
+        <label for="nombre_madre">Nombre de la Madre</label>
+        <input type="text" class="form-control" id="nombre_madre" [(ngModel)]="nuevoAlumno.nombre_madre" name="nombre_madre" required>
+      </div>
+      <div class="form-group">
+        <label for="grado">Grado</label>
+        <input type="text" class="form-control" id="grado" [(ngModel)]="nuevoAlumno.grado" name="grado" required>
+      </div>
+      <div class="form-group">
+        <label for="seccion">Sección</label>
+        <input type="text" class="form-control" id="seccion" [(ngModel)]="nuevoAlumno.seccion" name="seccion" required>
+      </div>
+      <div class="form-group">
+        <label for="fecha_ingreso">Fecha de Ingreso</label>
+        <input type="date" class="form-control" id="fecha_ingreso" [(ngModel)]="nuevoAlumno.fecha_ingreso" name="fecha_ingreso" required>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Crear Alumno</button>
+    </form>
+  
+    <hr>
+  
+    <h3 class="mt-5">Consultar Alumnos por Grado</h3>
+    <div class="form-group">
+      <label for="gradoConsulta">Grado</label>
+      <input type="text" class="form-control" id="gradoConsulta" [(ngModel)]="gradoConsulta" name="gradoConsulta">
+    </div>
+    <button (click)="consultarAlumnos()" class="btn btn-secondary mt-3">Consultar</button>
+  
+    <hr>
+  
+    <h3 class="mt-5">Listado de Alumnos</h3>
+    <ul class="list-group">
+      <li *ngFor="let alumno of alumnos" class="list-group-item">
+        {{ alumno.nombre }} - {{ alumno.grado }} - {{ alumno.seccion }}
+      </li>
+    </ul>
+  </div>
+  

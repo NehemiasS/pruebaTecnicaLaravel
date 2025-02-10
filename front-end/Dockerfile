@@ -10,15 +10,19 @@ COPY package.json package-lock.json ./
 # Instalar dependencias
 RUN npm install
 
+#RUN npm install -g @ionic/cli
+
+
 # Copiar código
 COPY . .
 
 # Compilar la aplicación Angular
 RUN npm run build -- --prod
-
-
-# Exponer el puerto 8100
-EXPOSE 8100
+RUN groupadd --force -g 1000 sail
+#RUN ls -l /app
+# Exponer el puerto
+EXPOSE 4200
 
 # Comando para iniciar la aplicación
-CMD ["ionic", "serve", "--external"]
+CMD ["npm", "start"]
+#CMD ["ionic", "serve", "--external"]
