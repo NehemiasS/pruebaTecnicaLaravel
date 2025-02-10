@@ -22,8 +22,7 @@ cd front-end
 
 npm start
 
-tabien se le agrego test a la parte del back-end que sepuede ejecutar con 
+tabien se le agrego test a la parte del back-end que sepuede ejecutar con: ./vendor/bin/sail up 
 
-file:///home/nehemias/Im%C3%A1genes/Capturas%20de%20pantalla/Captura%20desde%202025-02-09%2022-19-38.png
-
+![](https://github.com/NehemiasS/pruebaTecnicaLaravel/blob/feature/NehemiasSimon/Captura%20desde%202025-02-09%2022-19-38.png)
 
