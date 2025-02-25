@@ -33,5 +33,5 @@ consultar alumno
 ##Test
 tabien se le agrego test a la parte del back-end que sepuede ejecutar con: ./vendor/bin/sail test
 
-![](https://github.com/NehemiasS/pruebaTecnicaLaravel/blob/feature/NehemiasSimon/Captura%20desde%202025-02-24%2019-50-55.png)
+![](https://github.com/NehemiasS/pruebaTecnicaLaravel/blob/feature/NehemiasSimon/Captura%20desde%202025-02-24%2020-53-38.png) 
 
