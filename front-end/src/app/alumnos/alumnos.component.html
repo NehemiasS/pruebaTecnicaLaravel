@@ -39,14 +39,29 @@
       <label for="gradoConsulta">Grado</label>
       <input type="text" class="form-control" id="gradoConsulta" [(ngModel)]="gradoConsulta" name="gradoConsulta">
     </div>
-    <button (click)="consultarAlumnos()" class="btn btn-secondary mt-3">Consultar</button>
+    <button (click)="consultarAlumnos()" class="btn btn-success mt-3">Consultar</button>
   
     <hr>
   
     <h3 class="mt-5">Listado de Alumnos</h3>
     <ul class="list-group">
-      <li *ngFor="let alumno of alumnos" class="list-group-item">
-        {{ alumno.nombre }} - {{ alumno.grado }} - {{ alumno.seccion }}
+      <li *ngFor="let alumno of alumnos" class="list-group-item">         
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <h6>Nombre:</h6>
+              {{ alumno.nombre }} 
+            </div>
+            <div class="col-sm">
+              <h6>Grado:</h6>
+              {{ alumno.grado }} 
+            </div>
+            <div class="col-sm">
+              <h6>Seccion:</h6>
+              {{ alumno.seccion }}
+            </div>
+          </div>
+        </div>
       </li>
     </ul>
   </div>

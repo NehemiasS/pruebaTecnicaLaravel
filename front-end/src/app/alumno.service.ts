@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import {Alumno} from './models/alumno.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,18 +9,25 @@ import { Observable } from 'rxjs';
 })
 export class AlumnoService {
   
-  private apiUrl = 'http://localhost:80'; 
+  //private apiUrl = 'http://localhost:api/alumnos'; http://localhost:8000/api
+  private apiUrl = 'http://localhost/api';
+
+  private httpOptions = {
+    headers: new HttpHeaders ({
+      'Authorization': 'Basic ' + btoa('admin:secret'), 
+      'Content-Type': 'application/json'
+    })
+  };
+
   constructor(private http: HttpClient) { }
 
     // Método para crear un alumno
     crearAlumno(alumno: any): Observable<any> {
-      const headers = new HttpHeaders().set('Authorization', 'Basic YWRtaW46c2VjcmV0'); // Reemplaza con las credenciales Base64
-      return this.http.post(`${this.apiUrl}/crear-alumno`, alumno, { headers });
+      return this.http.post<any>(`${this.apiUrl}/crear-alumno`, alumno, this.httpOptions);
     }
   
     // Método para consultar alumnos por grado
-    consultarAlumno(grado: string): Observable<any> {
-      const headers = new HttpHeaders().set('Authorization', 'Basic YWRtaW46c2VjcmV0'); // Reemplaza con las credenciales Base64
-      return this.http.get(`${this.apiUrl}/consultar-alumno/${grado}`, { headers });
+    consultarAlumnosPorGrado(grado: number): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrl}/consultar-alumno/${grado}`, this.httpOptions);
     }
 }

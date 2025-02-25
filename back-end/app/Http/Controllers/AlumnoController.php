@@ -24,28 +24,28 @@ class AlumnoController extends Controller
       // Crear un nuevo alumno
       public function store(Request $request)
       {
-      try {
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255',
+        $request->validate([
+            'nombre' => 'required|string',
             'fecha_nacimiento' => 'required|date',
-            'nombre_padre' => 'required|string|max:255',
-            'nombre_madre' => 'required|string|max:255',
-            'grado' => 'required|string|max:255',
-            'seccion' => 'required|string|max:255',
+            'nombre_padre' => 'required|string',
+            'nombre_madre' => 'required|string',
+            'grado' => 'required|string',
+            'seccion' => 'required|string',
             'fecha_ingreso' => 'required|date',
         ]);
 
-        $alumno = Alumno::create($validated);
-
+        $alumno = Alumno::create($request->all());
         return response()->json($alumno, 201);
-    }   catch (\Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 400);
-    }
 }
       // Consultar alumnos por grado
       public function mostrarGradoAlumno($grado)
       {
           $alumnos = Alumno::where('grado', $grado)->get();
+
+          if($alumnos->isEmpty())
+          {
+            return response()->json(['message'=> 'No hay alumnos'], 404);
+          }
   
           return response()->json($alumnos);
       }

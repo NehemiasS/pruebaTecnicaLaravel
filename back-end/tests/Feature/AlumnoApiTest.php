@@ -13,13 +13,22 @@ class AlumnoApiTest extends TestCase
      * A basic feature test example.
      */
     use RefreshDatabase;
-    
+
+    private $headers;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->headers = [
+            'Authorization' => 'Basic ' . base64_encode('admin:secret'), 
+            //'Accept' => 'application/json',
+        ];
+    }
 
     public function test_crear_alumno()
     {
-        
-
-        $response = $this->postJson('/api/crear-alumno', [
+        $data =  [
             'nombre' => 'nehemias xicay',
             'fecha_nacimiento' => '2000-05-10',
             'nombre_padre' => 'lico simon',
@@ -27,11 +36,13 @@ class AlumnoApiTest extends TestCase
             'grado' => '10',
             'seccion' => 'A',
             'fecha_ingreso' => '2007-02-15',
-        ]);
+        ];
+
+        $response = $this->postJson('/api/crear-alumno', $data, $this->headers);
 
         $response->assertStatus(201);
         
-        $response->assertJson([
+        $this->assertDatabaseHas('alumnos',[
             'nombre' => 'nehemias xicay',
             'grado' => '10',
         ]);
@@ -40,16 +51,18 @@ class AlumnoApiTest extends TestCase
 
     }
 
+
     public function test_consultar_alumno_por_grado()
     { 
+        //se crean 10 alumnos
         $alumnos = Alumno::factory(10)->create();
 
         Alumno::factory()->create([
             'grado' => '10',
-            'nombre' => 'nehemias xicay',
+            // 'nombre' => 'nehemias xicay',
         ]);
 
-        $response = $this->getJson('/api/consultar-alumno/10');
+        $response = $this->getJson('/api/consultar-alumno/10', $this->headers);
 
         $response->assertStatus(200);
         $response->assertJsonCount(1);
