@@ -22,7 +22,16 @@ cd front-end
 
 npm start
 
-tabien se le agrego test a la parte del back-end que sepuede ejecutar con: ./vendor/bin/sail up 
+##Frontend
+crear alumno
+![](https://github.com/NehemiasS/pruebaTecnicaLaravel/blob/feature/NehemiasSimon/Captura%20desde%202025-02-24%2019-50-23.png)
 
-![](https://github.com/NehemiasS/pruebaTecnicaLaravel/blob/feature/NehemiasSimon/Captura%20desde%202025-02-09%2022-19-38.png)
+consultar alumno
+![](https://github.com/NehemiasS/pruebaTecnicaLaravel/blob/feature/NehemiasSimon/Captura%20desde%202025-02-24%2019-50-55.png)
+
+
+##Test
+tabien se le agrego test a la parte del back-end que sepuede ejecutar con: ./vendor/bin/sail test
+
+![](https://github.com/NehemiasS/pruebaTecnicaLaravel/blob/feature/NehemiasSimon/Captura%20desde%202025-02-24%2019-50-55.png)
 
